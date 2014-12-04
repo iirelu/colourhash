@@ -6,28 +6,70 @@
   <script src="spark-md5.min.js"></script>
   <script src="jquery-2.1.1.min.js"></script>
   <style>
-
-.box {
-  position: relative;
-  width: 50px;
-  height: 50px;
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #f0ece2;
+  padding-top: 1em;
+}
+h1 {
+  color: #866b6a;
+}
+h6 {
+  margin-top: 1em;
+  color: #cebd9f;
+}
+a {
+  color: #96b8a7;
+}
+p {
+  color: #af9b78;
 }
 
+#container {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+  width: 300px;
+  border-radius: 30px;
+  padding: 20px;
+}
+#boxes {
+  display: flex;
+}
+.box {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #888;
+}
   </style>
 </head>
 <body>
-<textarea id="input">butts</textarea>
-<div id="boxes">
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
+
+<h1>Colour Hash</h1>
+<p>Type some words into that textbox to turn them into colours!</p>
+<div id="container">
+  <textarea id="input">butts</textarea>
+  <div id="boxes">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
 </div>
+<h6>Made by <a href="http://github.com/iirelu">Anna</a></h6>
+
 <script>
 
 var input = $("#input");
 var boxes = $(".box");
+
+if(window.location.hash !== "") {
+  input.val(window.location.hash);
+}
 
 function update() {
   var hash = SparkMD5.hash(input.val());
