@@ -36,6 +36,7 @@ p {
 }
 #boxes {
   display: flex;
+  flex-flow: row wrap;
 }
 .box {
   width: 50px;
@@ -64,6 +65,15 @@ p {
 
 <script>
 
+var colour_dist = 6;
+
+if(window.location.search === "?SECRETAWESOMEMODE") {
+  for(var i = 0; i < 20; i++) {
+    $("<div class=\"box\">").appendTo($("#boxes"));
+  }
+  colour_dist = 1;
+}
+
 var input = $("#input");
 var boxes = $(".box");
 
@@ -74,7 +84,7 @@ if(window.location.hash !== "") {
 function update() {
   var hash = SparkMD5.hash(input.val());
   boxes.each(function(i, box) {
-    box.style.backgroundColor = "#" + hash.substr(i*6, 6);
+    box.style.backgroundColor = "#" + hash.substr(i*colour_dist, 6);
   });
 }
 
