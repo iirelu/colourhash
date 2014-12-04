@@ -68,7 +68,7 @@ var input = $("#input");
 var boxes = $(".box");
 
 if(window.location.hash !== "") {
-  input.val(window.location.hash);
+  input.val(atob(window.location.hash.split("#")[1]));
 }
 
 function update() {
