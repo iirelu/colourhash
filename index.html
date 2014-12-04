@@ -45,6 +45,9 @@ p {
   border-radius: 5px;
   background-color: #888;
 }
+.circle {
+  border-radius: 25px;
+}
   </style>
 </head>
 <body>
@@ -54,28 +57,29 @@ p {
 <div id="container">
   <textarea id="input">butts</textarea>
   <div id="boxes">
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
   </div>
 </div>
 <h6>Made by <a href="http://github.com/iirelu">Anna</a></h6>
 
 <script>
 
-var colour_dist = 6;
+var input = $("#input");
+var boxes = $("#boxes");
+var colour_dist;
 
 if(window.location.search === "?SECRETAWESOMEMODE") {
-  for(var i = 0; i < 20; i++) {
-    $("<div class=\"box\">").appendTo($("#boxes"));
+  // WHEEEEE
+  for(var i = 0; i < 25; i++) {
+    $("<div class='box circle'>").appendTo(boxes);
   }
   colour_dist = 1;
+} else {
+  // awwwww
+  for(var i = 0; i < 5; i++) {
+    $("<div class='box'>").appendTo(boxes);
+  }
+  colour_dist = 6;
 }
-
-var input = $("#input");
-var boxes = $(".box");
 
 if(window.location.hash !== "") {
   input.val(atob(window.location.hash.split("#")[1]));
@@ -83,7 +87,7 @@ if(window.location.hash !== "") {
 
 function update() {
   var hash = SparkMD5.hash(input.val());
-  boxes.each(function(i, box) {
+  boxes.children().each(function(i, box) {
     box.style.backgroundColor = "#" + hash.substr(i*colour_dist, 6);
   });
 }
